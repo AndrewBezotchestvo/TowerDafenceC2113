@@ -26,4 +26,13 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject newEnemy = Instantiate(_enemyPrefab, transform.position, transform.rotation);
     }
+
+    public float GetSpawnCount()
+    { 
+        return _spawnCount; 
+    }
+    public float GetAllSpawnCount()
+    { 
+        return _enemyCount; 
+    }
 }

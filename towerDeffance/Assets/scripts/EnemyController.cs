@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f; // Скорость перемещения
     [SerializeField] private float reachThreshold = 0.1f; // Расстояние, на котором точка считается достигнутой
     [SerializeField] private float health = 100;
+    [SerializeField] private GameController _gameController;
 
     private int currentWaypointIndex = 0;
     private bool isMoving = true;
@@ -22,8 +23,10 @@ public class EnemyController : MonoBehaviour
     {
         if (health <= 0 && isMoving)
         {
+            _gameController.TakeMoney(5);
             _animator.SetBool("death", true);
             isMoving = false;
+            Invoke("EnemyDestroy", 3);
         }
 
         if (!isMoving || waypoints.Count == 0) return;
@@ -62,5 +65,15 @@ public class EnemyController : MonoBehaviour
             health -= damage;
             _animator.SetTrigger("heart");
         }
+    }
+
+    public void EnemyDestroy()
+    {
+        Destroy(gameObject);
+    }
+
+    public float GetHealth()
+    { 
+        return health; 
     }
 }

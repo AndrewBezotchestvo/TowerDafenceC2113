@@ -17,6 +17,8 @@ public class BuildManager : MonoBehaviour
             //{
                 Instantiate(towerSelector.GetSelectedTower(), mousePos, Quaternion.identity);
             //}
+
+            towerSelector.SetNullTower();
         }
     }
 }
